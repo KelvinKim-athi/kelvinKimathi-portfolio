@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kelvin Murithi Kimathi | Machine Learning Portfolio</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+    line-height: 1.7;
+}
+
+.hero {
+    background: linear-gradient(135deg, #001f4d, #004aad, #5b21b6);
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 950px;
+    margin: auto;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero h2 {
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: #e0e8ff;
+    margin-bottom: 18px;
+}
+
+.hero p {
+    max-width: 800px;
+    margin: auto;
+    color: #edf2ff;
+    font-size: 1.05rem;
+}
+
+.hero-buttons {
+    margin-top: 28px;
+}
+
+.hero-buttons button,
+.hero-buttons a {
+    display: inline-block;
+    margin: 8px;
+    padding: 13px 24px;
+    border-radius: 30px;
+    border: none;
+    background: white;
+    color: #004aad;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.hero-buttons button:hover,
+.hero-buttons a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+nav {
+    background: #001f4d;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+}
+
+nav button {
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 17px 22px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+nav button:hover,
+nav button.active {
+    color: #d8b4fe;
+    background: rgba(255,255,255,0.08);
+}
+
+.view-all-btn {
+    background: #7c3aed;
+}
+
+main {
+    max-width: 1150px;
+    margin: 42px auto;
+    padding: 0 20px;
+}
+
+section {
+    display: none;
+    background: white;
+    padding: 38px;
+    border-radius: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 14px 35px rgba(0,0,0,0.08);
+    animation: fadeIn 0.45s ease;
+}
+
+section.active,
+section.show-all {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    color: #004aad;
+    font-size: 2rem;
+    margin-bottom: 18px;
+}
+
+h3 {
+    color: #00367d;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 13px;
+}
+
+.about-layout {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.profile-pic {
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid #eef3ff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+.about-text {
+    flex: 1;
+    min-width: 270px;
+}
+
+.badges {
+    margin-top: 18px;
+}
+
+.badge {
+    display: inline-block;
+    background: #eef3ff;
+    color: #004aad;
+    padding: 8px 14px;
+    border-radius: 30px;
+    margin: 5px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #f7f9ff, #eef3ff);
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #dbe7ff;
+    text-align: center;
+}
+
+.stat-card strong {
+    display: block;
+    font-size: 1.8rem;
+    color: #004aad;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: #f7f9ff;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #e1e8ff;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+li::before {
+    content: "• ";
+    color: #004aad;
+    font-weight: bold;
+}
+
+.project-tag {
+    display: inline-block;
+    background: #e8efff;
+    color: #004aad;
+    padding: 6px 11px;
+    border-radius: 20px;
+    margin: 5px 4px 0 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+a {
+    color: #004aad;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.timeline {
+    border-left: 4px solid #004aad;
+    padding-left: 22px;
+}
+
+.timeline-item {
+    margin-bottom: 25px;
+}
+
+.contact-box {
+    background: #f7f9ff;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid #e1e8ff;
+}
+
+footer {
+    background: #001f4d;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    margin-top: 45px;
+}
+
+@media (max-width: 720px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero h2 {
+        font-size: 1.05rem;
+    }
+
+    nav button {
+        padding: 13px 12px;
+        font-size: 0.9rem;
+    }
+
+    section {
+        padding: 26px;
+    }
+
+    .about-layout {
+        text-align: center;
+        justify-content: center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+    <div class="hero-content">
+        <h1>Kelvin Murithi Kimathi</h1>
+        <h2>Machine Learning Engineer | Computational Behavioral Modeling | Data Driven Decision Systems</h2>
+        <p>
+            I build practical data systems, analyze behavioral patterns, and apply machine learning thinking to solve real world problems with clarity, structure, and measurable impact.
+        </p>
+
+        <div class="hero-buttons">
+            <button onclick="show('projects', document.querySelector('[data-tab=projects]'))">View Projects</button>
+            <button onclick="showAll(document.querySelector('[data-tab=all]'))">View Full Profile</button>
+            <a href="mailto:kelvinmurithi3900@gmail.com">Contact Me</a>
+        </div>
+    </div>
+</header>
+
+<nav>
+    <button class="active" data-tab="about" onclick="show('about', this)">About</button>
+    <button data-tab="skills" onclick="show('skills', this)">Skills</button>
+    <button data-tab="projects" onclick="show('projects', this)">Projects</button>
+    <button data-tab="research" onclick="show('research', this)">Research</button>
+    <button data-tab="education" onclick="show('education', this)">Education</button>
+    <button data-tab="contact" onclick="show('contact', this)">Contact</button>
+    <button class="view-all-btn" data-tab="all" onclick="showAll(this)">View All</button>
+</nav>
+
+<main>
+
+<section id="about" class="active">
+    <h2>About Me</h2>
+
+    <div class="about-layout">
+        <img src="kelvin.jpg" alt="Kelvin Murithi Kimathi" class="profile-pic">
+
+        <div class="about-text">
+            <p>
+                I am <strong>Kelvin Murithi Kimathi</strong>, an Information Technology student at Kirinyaga University with a strong interest in machine learning, behavioral data analysis, and intelligent decision systems.
+            </p>
+
+            <p>
+                My work focuses on turning structured data into useful insight. I enjoy studying patterns, organizing complex information, and building practical systems that support prediction, interpretation, and better decision making.
+            </p>
+
+            <p>
+                I am especially interested in computational behavioral modeling, predictive analytics, database systems, reinforcement learning concepts, and research driven machine learning applications.
+            </p>
+
+            <div class="badges">
+                <span class="badge">Machine Learning</span>
+                <span class="badge">Behavioral Modeling</span>
+                <span class="badge">Data Analysis</span>
+                <span class="badge">Python</span>
+                <span class="badge">SQL</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">
+            <strong>4+</strong>
+            Technical Focus Areas
+        </div>
+        <div class="stat-card">
+            <strong>5+</strong>
+            Practical Project Areas
+        </div>
+        <div class="stat-card">
+            <strong>100%</strong>
+            Remote Ready
+        </div>
+        <div class="stat-card">
+            <strong>IT</strong>
+            Academic Foundation
+        </div>
+    </div>
+</section>
+
+<section id="skills">
+    <h2>Core Skills</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Machine Learning</h3>
+            <ul>
+                <li>Supervised learning</li>
+                <li>Unsupervised learning</li>
+                <li>Feature engineering</li>
+                <li>Model evaluation</li>
+                <li>Prediction focused problem solving</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Behavioral Modeling</h3>
+            <ul>
+                <li>Decision making analysis</li>
+                <li>Pattern recognition</li>
+                <li>Behavioral data interpretation</li>
+                <li>Statistical reasoning</li>
+                <li>Human behavior data thinking</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Programming</h3>
+            <ul>
+                <li>Python</li>
+                <li>SQL</li>
+                <li>Java</li>
+                <li>JavaScript</li>
+                <li>React Native fundamentals</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Data Tools</h3>
+            <ul>
+                <li>Microsoft Access</li>
+                <li>Microsoft Excel</li>
+                <li>Database management</li>
+                <li>Data cleaning</li>
+                <li>Structured reporting</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <h2>Selected Projects</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Behavioral Data Analysis System</h3>
+            <p>
+                Designed a structured data system for tracking monthly savings, contribution behavior, and interest growth across multiple users.
+            </p>
+            <p>
+                This project demonstrates how financial activity can be organized and studied to understand consistency, behavioral patterns, and user trends over time.
+            </p>
+            <span class="project-tag">Behavioral Data</span>
+            <span class="project-tag">Microsoft Access</span>
+            <span class="project-tag">Data Modeling</span>
+        </div>
+
+        <div class="card">
+            <h3>Predictive Modeling with Structured Data</h3>
+            <p>
+                Built analytical workflows for cleaning, organizing, and interpreting structured datasets to support prediction and decision making.
+            </p>
+            <p>
+                The focus was on preparing reliable data, identifying useful patterns, and developing model ready thinking.
+            </p>
+            <span class="project-tag">Prediction</span>
+            <span class="project-tag">Data Cleaning</span>
+            <span class="project-tag">Pattern Discovery</span>
+        </div>
+
+        <div class="card">
+            <h3>Number System Converter App</h3>
+            <p>
+                Developed an offline Android application that converts numbers between Decimal, Binary, Octal, and Hexadecimal systems.
+            </p>
+            <p>
+                This strengthened my logical reasoning, algorithmic thinking, and practical application development skills.
+            </p>
+            <span class="project-tag">React Native</span>
+            <span class="project-tag">Algorithms</span>
+            <span class="project-tag">Mobile App</span>
+            <br><br>
+            <a href="https://github.com/KelvinKim-athi/number-system-converter-offline" target="_blank">View on GitHub</a>
+        </div>
+
+        <div class="card">
+            <h3>Statistical Analysis Practice</h3>
+            <p>
+                Applied regression, correlation, probability, and statistical analysis to interpret relationships between variables.
+            </p>
+            <p>
+                This work supports my foundation in machine learning, inference, and behavioral prediction.
+            </p>
+            <span class="project-tag">Statistics</span>
+            <span class="project-tag">Regression</span>
+            <span class="project-tag">Probability</span>
+        </div>
+    </div>
+</section>
+
+<section id="research">
+    <h2>Research Interests</h2>
+
+    <p>
+        My long term interest is to contribute to machine learning systems that can explain, predict, and simulate behavior in practical environments.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Computational Behavioral Modeling</h3>
+            <p>
+                Understanding how data can represent human choices, routines, financial behavior, and decision making patterns.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Decision Systems</h3>
+            <p>
+                Applying machine learning concepts to support better predictions, recommendations, and structured decisions.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Reinforcement Learning Concepts</h3>
+            <p>
+                Exploring how adaptive systems can learn from feedback, rewards, and changing environments.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Agent Based Simulation</h3>
+            <p>
+                Studying how individual actions can produce larger patterns in social, financial, or digital systems.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="education">
+    <h2>Education & Experience</h2>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <h3>Bachelor of Science in Information Technology</h3>
+            <p><strong>Kirinyaga University</strong></p>
+            <p>
+                Focused on programming, databases, networking, statistics, systems analysis, and practical technology based problem solving.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>Freelance Data Entry and Transcription</h3>
+            <p>
+                Delivered accurate, organized, and well formatted work for clients while strengthening attention to detail, consistency, and structured data handling.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>Technical Learning Focus</h3>
+            <p>
+                Machine learning fundamentals, database systems, data analysis, statistics, programming, and computational modeling.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+
+    <div class="contact-box">
+        <p><strong>Email:</strong> <a href="mailto:kelvinmurithi3900@gmail.com">kelvinmurithi3900@gmail.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+254795310862">+254 795 310 862</a></p>
+        <p><strong>GitHub:</strong> <a href="https://github.com/KelvinKim-athi" target="_blank">github.com/KelvinKim-athi</a></p>
+        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/kelvin-murithi-06299b34b/" target="_blank">linkedin.com/in/kelvin-murithi-06299b34b</a></p>
+        <p><strong>Location:</strong> Nairobi, Kenya</p>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p>© 2026 Kelvin Murithi Kimathi | Machine Learning and Behavioral Modeling Portfolio</p>
+</footer>
+
+<script>
+function show(id, btn) {
+    document.querySelectorAll("section").forEach(section => {
+        section.classList.remove("active");
+        section.classList.remove("show-all");
+    });
+
+    document.querySelectorAll("nav button").forEach(button => {
+        button.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+    btn.classList.add("active");
+
+    window.scrollTo({
+        top: document.querySelector("main").offsetTop - 80,
+        behavior: "smooth"
+    });
+}
+
+function showAll(btn) {
+    document.querySelectorAll("section").forEach(section => {
+        section.classList.remove("active");
+        section.classList.add("show-all");
+    });
+
+    document.querySelectorAll("nav button").forEach(button => {
+        button.classList.remove("active");
+    });
+
+    btn.classList.add("active");
+
+    window.scrollTo({
+        top: document.querySelector("main").offsetTop - 80,
+        behavior: "smooth"
+    });
+}
+</script>
+
+</body>
+</html>
